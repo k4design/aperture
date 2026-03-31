@@ -1,0 +1,1044 @@
+/* ==========================================================================
+   Europe Collection Listing Page — Scoped under .collection-page
+   Uses only CSS variable tokens (alias layer); no hex or font names.
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+/* --------------------------------------------------------------------------
+   Page loader — fades out when window load fires; content fades in
+   -------------------------------------------------------------------------- */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg, #fafafa);
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+body.page-loaded .page-loader {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.page-loader-spinner {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  border-top-color: var(--color-accent, #000);
+  border-radius: 50%;
+  animation: page-loader-spin 0.7s linear infinite;
+}
+
+@keyframes page-loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.collection-page-content {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+body.page-loaded .collection-page-content {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Alias layer: map to likely global tokens. Serif overrides for Lofty native.
+   -------------------------------------------------------------------------- */
+.collection-page {
+  --bg: var(--color-bg, var(--background));
+  --text: var(--color-text, var(--text));
+  --muted: var(--color-muted, var(--muted));
+  --border: var(--color-border, var(--border));
+  --accent: var(--color-accent, var(--primary));
+  /* Typography: serif display (override Lofty’s native font stack) */
+  --font-serif: Georgia, "Times New Roman", serif;
+  --display: var(--font-display, 'Playfair Display', serif);
+  --body: var(--font-body, var(--font-sans));
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 3.5rem;
+  --space-10: 4rem;
+
+  /* Typography scale (fluid, restrained) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.1vw, 0.8125rem);
+  --text-sm: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
+  --text-base: clamp(0.875rem, 0.82rem + 0.25vw, 1rem);
+  --text-lg: clamp(1rem, 0.92rem + 0.35vw, 1.125rem);
+  --text-xl: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-2xl: clamp(1.25rem, 1.1rem + 0.65vw, 1.5rem);
+  --text-3xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --text-display: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+  --heading-section: clamp(2rem, 1.5rem + 2vw, 3rem);
+  --heading-collection: clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
+
+  /* Layout */
+  --content-max: 72rem;
+  --content-narrow: 42rem;
+  --breakpoint-sm: 48rem;
+  --breakpoint-md: 64rem;
+
+  font-family: var(--body);
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Override Lofty native fonts: display/headings use Playfair Display (serif) */
+.collection-page .wordmark,
+.collection-page .collection-header h1,
+.collection-page .featured-carousel-header h2,
+.collection-page .featured-property .featured-content h2,
+.collection-page .country-section h2,
+.collection-page .property-card h3,
+.collection-page .conversion-band h2 {
+  font-family: var(--display) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Intro animations (respect prefers-reduced-motion)
+   -------------------------------------------------------------------------- */
+@keyframes intro-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .collection-page .collection-header .breadcrumb {
+    animation: intro-fade-up 0.55s ease-out both;
+  }
+  .collection-page .collection-header h1 {
+    animation: intro-fade-up 0.55s ease-out 0.1s both;
+  }
+  .collection-page .controls-row {
+    animation: intro-fade 0.5s ease-out 0.25s both;
+  }
+  .collection-page .filter-chips a:nth-child(1) {
+    animation: intro-fade 0.4s ease-out 0.35s both;
+  }
+  .collection-page .filter-chips a:nth-child(2) {
+    animation: intro-fade 0.4s ease-out 0.42s both;
+  }
+  .collection-page .filter-chips a:nth-child(3) {
+    animation: intro-fade 0.4s ease-out 0.49s both;
+  }
+  .collection-page .featured-carousel-header h2 {
+    animation: intro-fade-up 0.5s ease-out 0.35s both;
+  }
+  .collection-page .featured-carousel-viewport {
+    animation: intro-fade-up 0.6s ease-out 0.45s both;
+  }
+  .collection-page .featured-carousel-controls {
+    animation: intro-fade 0.4s ease-out 0.55s both;
+  }
+  /* Scroll-triggered: sections start hidden only when JS has run (.intro-js) */
+  .collection-page.intro-js .country-section:not(.in-view) {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  .collection-page .country-section.in-view {
+    animation: intro-fade-up 0.5s ease-out both;
+  }
+  /*
+   * Card stagger — future-proof, no nth-child cap.
+   * JS stamps each article with style="--card-index: N" when its section
+   * enters the viewport. The delay is calculated from that index so every
+   * card, no matter how many are added, animates correctly.
+   */
+  .collection-page .country-section.in-view .property-grid article {
+    animation: intro-fade-up 0.45s ease-out calc(0.05s + var(--card-index, 0) * 0.07s) both;
+  }
+  .collection-page .site-footer.in-view {
+    animation: intro-fade 0.5s ease-out both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collection-page .country-section:not(.in-view) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Skip link
+   -------------------------------------------------------------------------- */
+.collection-page .skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-4);
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg);
+  color: var(--text);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  clip-path: inset(0 0 0 0);
+  transition: opacity 0.2s ease;
+}
+
+.collection-page .skip-link:not(:focus) {
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+}
+
+.collection-page .skip-link:focus {
+  clip-path: inset(0 0 0 0);
+  width: auto;
+  height: auto;
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Global header / nav
+   -------------------------------------------------------------------------- */
+.collection-page .site-header {
+  padding: var(--space-5) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.collection-page .header-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.collection-page .wordmark {
+  font-family: var(--display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.collection-page .wordmark:hover {
+  opacity: 0.85;
+}
+
+.collection-page .wordmark:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.collection-page .main-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.collection-page .main-nav a {
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.collection-page .main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+.collection-page .main-nav a:hover::after,
+.collection-page .main-nav a:focus-visible::after {
+  width: 100%;
+}
+
+.collection-page .main-nav a:focus-visible {
+  outline: none;
+}
+
+.collection-page .btn-nav {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: transparent;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.collection-page .btn-nav:hover {
+  border-color: var(--accent);
+}
+
+.collection-page .btn-nav:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Main content container
+   -------------------------------------------------------------------------- */
+.collection-page main {
+  padding-bottom: var(--space-10);
+}
+
+.collection-page .container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* --------------------------------------------------------------------------
+   Collection header
+   -------------------------------------------------------------------------- */
+.collection-page .collection-header {
+  position: relative;
+  padding: var(--space-8) var(--space-4) var(--space-6);
+}
+
+.collection-page .collection-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("https://as1.ftcdn.net/v2/jpg/03/85/08/44/1000_F_385084457_tB4OHp7x2w62REsfxeqUT37aeaxxEmNy.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(100%);
+}
+
+.collection-page .collection-header-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.collection-page .collection-header-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.collection-page .collection-header .breadcrumb {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--space-4);
+}
+
+.collection-page .collection-header .breadcrumb a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+.collection-page .collection-header .breadcrumb a:hover,
+.collection-page .collection-header .breadcrumb a:focus-visible {
+  color: #fff;
+}
+
+.collection-page .collection-header .breadcrumb a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .collection-header h1 {
+  font-family: var(--display);
+  font-size: calc(2 * var(--heading-collection));
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 var(--space-4);
+  letter-spacing: 0.02em;
+}
+
+.collection-page .collection-header .collection-tagline {
+  font-size: var(--text-lg);
+  color: #fff;
+  margin: 0 0 var(--space-3);
+  max-width: var(--content-narrow);
+  line-height: 1.5;
+}
+
+.collection-page .collection-header .collection-meta {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0 0 var(--space-5);
+}
+
+.collection-page .collection-header .global-collections {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.collection-page .collection-header .global-collections a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+}
+
+.collection-page .collection-header .global-collections a:hover,
+.collection-page .collection-header .global-collections a:focus-visible {
+  color: #fff;
+}
+
+.collection-page .collection-header .global-collections a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .global-collections span + a::before {
+  content: " · ";
+}
+
+/* --------------------------------------------------------------------------
+   Refined controls (region nav) — sans-serif, generous spacing, hover states
+   -------------------------------------------------------------------------- */
+.collection-page .controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  padding: var(--space-6) 0;
+  margin-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.collection-page .filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.collection-page .filter-chips a {
+  display: inline-block;
+  padding: var(--space-4) var(--space-6);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  border-radius: var(--space-1, 0.25rem);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.collection-page .filter-chips a:hover {
+  color: var(--text);
+  background-color: color-mix(in srgb, var(--text) 10%, transparent);
+  border-bottom-color: var(--border);
+}
+
+.collection-page .filter-chips a:focus-visible {
+  color: var(--text);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .filter-chips a:active,
+.collection-page .filter-chips a.is-active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.collection-page .filter-chips a.is-active:hover {
+  border-bottom-color: var(--accent);
+}
+
+.collection-page .view-options {
+  margin-left: auto;
+  padding: var(--space-4) 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.collection-page .view-options a {
+  display: inline-block;
+  padding: var(--space-2) var(--space-3);
+  margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-3));
+  color: var(--muted);
+  text-decoration: none;
+  border-radius: var(--space-1, 0.25rem);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.collection-page .view-options a:hover,
+.collection-page .view-options a:focus-visible {
+  color: var(--text);
+  background-color: color-mix(in srgb, var(--muted) 12%, transparent);
+}
+
+.collection-page .view-options a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .view-options span + a::before {
+  content: " · ";
+}
+
+.collection-page details.controls-sort {
+  font-size: var(--text-sm);
+}
+
+.collection-page details.controls-sort summary {
+  cursor: pointer;
+  color: var(--muted);
+  list-style: none;
+}
+
+.collection-page details.controls-sort summary::-webkit-details-marker {
+  display: none;
+}
+
+.collection-page details.controls-sort summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page details.controls-sort ul {
+  margin: var(--space-2) 0 0;
+  padding-left: var(--space-4);
+}
+
+.collection-page details.controls-sort a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.collection-page details.controls-sort a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   View-mode toggle: grid vs list (CSS-only via :target)
+   -------------------------------------------------------------------------- */
+.collection-page #view-list {
+  display: none;
+}
+
+.collection-page #view-list:target {
+  display: block;
+}
+
+.collection-page #view-list:target ~ #view-grid {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Featured property (editorial highlight) – carousel
+   -------------------------------------------------------------------------- */
+.collection-page .featured-property {
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-8);
+}
+
+.collection-page .featured-carousel-header {
+  margin-bottom: var(--space-6);
+}
+
+.collection-page .featured-carousel-header h2 {
+  font-family: var(--display);
+  font-size: var(--heading-section);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0;
+  color: var(--text);
+}
+
+.collection-page .featured-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.collection-page .featured-carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.collection-page .featured-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 0;
+}
+
+.collection-page .featured-property-inner {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .collection-page .featured-property-inner {
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+  }
+}
+
+/* Carousel controls */
+.collection-page .featured-carousel-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+}
+
+.collection-page .carousel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  font-size: 1.25rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.collection-page .carousel-btn:hover {
+  border-color: var(--accent);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.collection-page .carousel-btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .carousel-dots {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.collection-page .carousel-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.collection-page .carousel-dot:hover {
+  background: var(--muted);
+}
+
+.collection-page .carousel-dot.is-active,
+.collection-page .carousel-dot[aria-selected="true"] {
+  background: var(--text);
+  transform: scale(1.25);
+}
+
+.collection-page .carousel-dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .featured-property .featured-figure {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.collection-page .featured-property .featured-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.collection-page .featured-property .featured-figure:hover img {
+  transform: scale(1.02);
+}
+
+.collection-page .featured-property .featured-content h2 {
+  font-family: var(--display);
+  font-size: var(--heading-section);
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 var(--space-3);
+}
+
+.collection-page .featured-property .featured-content .featured-location {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin: 0 0 var(--space-4);
+}
+
+.collection-page .featured-property .featured-content .featured-copy {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text);
+  margin: 0 0 var(--space-5);
+}
+
+.collection-page .featured-property .btn-featured {
+  display: inline-block;
+  padding: var(--space-3) var(--space-5) var(--space-4);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--border);
+  border-bottom: 2px solid #000;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.collection-page .featured-property .btn-featured:hover {
+  border-color: var(--accent);
+  border-bottom-color: #000;
+}
+
+.collection-page .featured-property .btn-featured:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Country sections (grid layout)
+   -------------------------------------------------------------------------- */
+.collection-page .country-section {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--border);
+  scroll-margin-top: var(--space-8);
+}
+
+.collection-page .country-section:last-child {
+  border-bottom: none;
+}
+
+.collection-page .country-section h2 {
+  font-family: var(--display);
+  font-size: var(--heading-section);
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.collection-page .property-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 48rem) {
+  .collection-page .property-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64rem) {
+  .collection-page .property-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Property card (grid) */
+.collection-page .property-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+.collection-page .property-card:hover {
+  border-color: var(--accent);
+}
+
+.collection-page .property-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .property-card .card-figure {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.collection-page .property-card .card-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.collection-page .property-card:hover .card-figure img {
+  transform: scale(1.02);
+}
+
+.collection-page .property-card .card-body {
+  padding: var(--space-4);
+}
+
+.collection-page .property-card h3 {
+  font-family: var(--display);
+  font-size: var(--text-xl);
+  font-weight: 400;
+  margin: 0 0 var(--space-2);
+  color: var(--text);
+}
+
+.collection-page .property-card .card-location {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  margin: 0 0 var(--space-3);
+}
+
+.collection-page .property-card .card-meta {
+  font-size: var(--text-xs);
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.collection-page .property-card .card-meta span + span::before {
+  content: " · ";
+}
+
+.collection-page .property-card .card-tag {
+  font-size: var(--text-xs);
+  color: var(--accent);
+  margin-top: var(--space-2);
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   List view (compact)
+   -------------------------------------------------------------------------- */
+.collection-page .property-list .country-section {
+  padding: var(--space-4) 0;
+}
+
+.collection-page .property-list .property-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.collection-page .property-list .property-card {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  gap: var(--space-4);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+}
+
+.collection-page .property-list .property-card:last-child {
+  border-bottom: none;
+}
+
+.collection-page .property-list .property-card .card-figure {
+  aspect-ratio: 1;
+}
+
+.collection-page .property-list .property-card .card-body {
+  padding: var(--space-3) 0;
+}
+
+@media (min-width: 48rem) {
+  .collection-page .property-list .property-card {
+    grid-template-columns: 16rem 1fr;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Conversion band
+   -------------------------------------------------------------------------- */
+.collection-page .conversion-band {
+  padding: var(--space-10) var(--space-4);
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.collection-page .conversion-band-inner {
+  max-width: var(--content-narrow);
+  margin: 0 auto;
+}
+
+.collection-page .conversion-band h2 {
+  font-family: var(--display);
+  font-size: var(--heading-section);
+  font-weight: 400;
+  color: var(--text);
+  margin: 0 0 var(--space-4);
+}
+
+.collection-page .conversion-band .conversion-cta {
+  margin-bottom: var(--space-4);
+}
+
+.collection-page .conversion-band .btn-brochure {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--text-sm);
+  letter-spacing: 0.05em;
+  color: var(--text);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  transition: opacity 0.2s ease;
+}
+
+.collection-page .conversion-band .btn-brochure:hover {
+  opacity: 0.9;
+}
+
+.collection-page .conversion-band .btn-brochure:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .conversion-band .conversion-secondary a {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.collection-page .conversion-band .conversion-secondary a:hover,
+.collection-page .conversion-band .conversion-secondary a:focus-visible {
+  color: var(--text);
+}
+
+.collection-page .conversion-band .conversion-secondary a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   Footer (international)
+   -------------------------------------------------------------------------- */
+.collection-page .site-footer {
+  padding: var(--space-8) var(--space-4);
+  border-top: 1px solid var(--border);
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.collection-page .footer-inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.collection-page .footer-offices {
+  margin-bottom: var(--space-4);
+}
+
+.collection-page .footer-legal a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.collection-page .footer-legal a:hover,
+.collection-page .footer-legal a:focus-visible {
+  color: var(--text);
+}
+
+.collection-page .footer-legal a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.collection-page .footer-legal span + a::before {
+  content: " · ";
+}
+
+/* --------------------------------------------------------------------------
+   Visually hidden (accessibility)
+   -------------------------------------------------------------------------- */
+.collection-page .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Print
+   -------------------------------------------------------------------------- */
+@media print {
+  .collection-page .skip-link,
+  .collection-page .site-header,
+  .collection-page .controls-row,
+  .collection-page .view-options,
+  .collection-page .featured-property .featured-figure img {
+    display: none !important;
+  }
+
+  .collection-page .featured-property {
+    padding: var(--space-4) 0;
+  }
+
+  .collection-page .property-card {
+    break-inside: avoid;
+  }
+}
