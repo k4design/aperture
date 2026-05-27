@@ -1,6 +1,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Europe Collection | Luxury Properties</title><link rel="stylesheet" href="europe-collection.css" />
+<style>
+  .sort-bar { display:flex; align-items:center; gap:0.75rem; margin-bottom:1.75rem; }
+  .sort-bar label { font-size:0.8125rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--color-muted,#888); white-space:nowrap; }
+  .sort-select { appearance:none; -webkit-appearance:none; background-color:transparent; border:none; border-bottom:1px solid var(--color-border,#d0c9be); border-radius:0; box-shadow:none; padding:0.375rem 2rem 0.375rem 0; font-size:0.875rem; color:inherit; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 0.25rem center; transition:border-color 0.2s; }
+  .sort-select:hover { border-bottom-color:var(--color-accent,#9a8268); }
+  .sort-select:focus { outline:none; border-bottom-color:var(--color-accent,#9a8268); }
+  .filter-chips a { border-radius:0; }
+</style>
 <div class="page-loader" aria-hidden="true" aria-label="Loading"><span class="page-loader-spinner"></span></div>
 <div class="collection-page collection-page-content"><a href="#main" class="skip-link">Skip to main content</a>
   <main id="main"><!-- Collection header -->
@@ -20,7 +28,6 @@
           <a href="#united-kingdom">United Kingdom</a>
           <a href="#monaco">Monaco</a>
           <a href="#france">France</a>
-        
           <a href="#portugal">Portugal</a>
         </div>
       </div>
@@ -32,36 +39,30 @@
       <div class="featured-carousel-viewport">
         <div class="featured-carousel-track" role="list">
           <div class="featured-slide" role="listitem">
-            <div class="container">
-              <a href="https://www.apertureglobal.com/hazelhurstfarm" class="featured-slide-link">
-                <div class="featured-property-inner">
+            <div class="container"><a href="https://www.apertureglobal.com/hazelhurstfarm" class="featured-slide-link"><div class="featured-property-inner">
                   <figure class="featured-figure">
                     <img src="https://k4design.github.io/lofty-sections/img/euproperties/euproperties/hazelnutfarm/1.jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/euproperties/hazelnutfarm/1.jpg 1x" sizes="(min-width: 48rem) 50vw, 100vw" alt="Hazelhurst Farm, a refurbished residential and equestrian estate on the edge of Sway in the New Forest" width="1200" height="900" />
                   </figure>
                   <div class="featured-content">
                     <h2 class="featured-slide-title">Hazelhurst Farm</h2>
                     <p class="featured-location">Flexford Lane, Sway, Lymington, Hampshire, United Kingdom</p>
+                    <p class="featured-price">£3,000,000</p>
                     <p class="featured-copy">A rare opportunity in the New Forest—a beautifully refurbished residential and equestrian estate on around nine acres, discreetly set on the peaceful edge of Sway.</p><span class="btn-featured">View property</span>
                   </div>
-                </div>
-              </a>
-            </div>
+                </div></a></div>
           </div>
           <div class="featured-slide" role="listitem">
-            <div class="container">
-              <a href="https://www.apertureglobal.com/montedacarrasqueira" class="featured-slide-link">
-                <div class="featured-property-inner">
+            <div class="container"><a href="https://www.apertureglobal.com/montedacarrasqueira" class="featured-slide-link"><div class="featured-property-inner">
                   <figure class="featured-figure">
                     <img src="https://k4design.github.io/lofty-sections/img/euproperties/montedacarrasqueira/PHOTO-2026-02-04-13-26-18%20(2).jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/montedacarrasqueira/PHOTO-2026-02-04-13-26-18%20(2).jpg 1x" sizes="(min-width: 48rem) 50vw, 100vw" alt="Monte da Carrasqueira, restored quinta in Alentejo, Portugal" width="1200" height="900" />
                   </figure>
                   <div class="featured-content">
                     <h2 class="featured-slide-title">Monte da Carrasqueira</h2>
                     <p class="featured-location">Foros da Casa Nova, São Domingos e Vale de Água, Portugal</p>
+                    <p class="featured-price">€850,000</p>
                     <p class="featured-copy">Quiet Alentejo lifestyle, close to the coast and golf—a restored quinta on 0.813 acres with pool, fruit trees, and low-maintenance living.</p><span class="btn-featured">View property</span>
                   </div>
-                </div>
-              </a>
-            </div>
+                </div></a></div>
           </div>
         </div>
       </div>
@@ -112,11 +113,11 @@
                   <p class="card-location">Flexford Lane, Sway, Lymington, Hampshire, United Kingdom</p>
                   <p class="card-meta"><span>3 bed · 3 bath</span><span>~10,000 sq ft · 9 acres</span><span>£3,000,000</span></p><span class="card-tag">Refurbished</span>
                 </div></a></article>
-            <article><a href="https://www.apertureglobal.com/54ashfordcres" class="property-card"><figure class="card-figure">
-                  <img src="https://k4design.github.io/lofty-sections/img/euproperties/54ashfordcres/1000034790.png" srcset="https://k4design.github.io/lofty-sections/img/euproperties/54ashfordcres/1000034790.png 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="54 Ashford Crescent, Grange Farm, Milton Keynes" width="600" height="450" />
+            <article><a href="https://www.apertureglobal.com/ashfordcres" class="property-card"><figure class="card-figure">
+                  <img src="https://k4design.github.io/lofty-sections/img/euproperties/54ashfordcres/1000034790.png" srcset="https://k4design.github.io/lofty-sections/img/euproperties/54ashfordcres/1000034790.png 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Ashford Crescent, Grange Farm, Milton Keynes" width="600" height="450" />
                 </figure><div class="card-body">
-                  <h3>54 Ashford Crescent</h3>
-                  <p class="card-location">54 Ashford Cres, Grange Farm, Milton Keynes MK8 0LZ, United Kingdom</p>
+                  <h3>Ashford Crescent</h3>
+                  <p class="card-location">Ashford Cres, Grange Farm, Milton Keynes MK8 0LZ, United Kingdom</p>
                   <p class="card-meta"><span>6 bed · 7 bath</span><span>4,550 sq ft</span><span>£1,600,000</span></p><span class="card-tag">Executive</span>
                 </div></a></article>
             <article><a href="https://www.apertureglobal.com/greenacregreenlane" class="property-card"><figure class="card-figure">
@@ -154,13 +155,7 @@
                   <p class="card-location">Bethnal Green, London, E2, United Kingdom</p>
                   <p class="card-meta"><span>4 bed · 3 bath</span><span>2,038 sq ft</span><span>£1,180,000</span></p><span class="card-tag">Period</span>
                 </div></a></article>
-            <article><a href="https://www.apertureglobal.com/107stationparade" class="property-card"><figure class="card-figure">
-                  <img src="https://k4design.github.io/lofty-sections/img/euproperties/107stationparade/6ff1476171d601d1f37a200594937bf0.jpeg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/107stationparade/698a58002cbfb04eeba4b357374bf7ef.jpeg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="107 Station Parade, Harrogate" width="600" height="450" />
-                </figure><div class="card-body">
-                  <h3>107 Station Parade</h3>
-                  <p class="card-location">Station Parade, Harrogate HG1 1HB, United Kingdom</p>
-                  <p class="card-meta"><span>2 bed · 2 bath</span><span>775 sq ft</span><span>£339,950</span></p><span class="card-tag">2021</span>
-                </div></a></article>
+          
             <article><a href="https://www.apertureglobal.com/3thackerayhouse" class="property-card"><figure class="card-figure">
                   <img src="https://k4design.github.io/lofty-sections/img/euproperties/3thackerayhouse/28fc2cc9a5c0320264950dbee111608e.jpeg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/3thackerayhouse/28fc2cc9a5c0320264950dbee111608e.jpeg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="3 Thackeray House, Sloane Square" width="600" height="450" />
                 </figure><div class="card-body">
@@ -180,7 +175,7 @@
                 </figure><div class="card-body">
                   <h3>14, Thurloe Place</h3>
                   <p class="card-location">Thurloe Place, London SW7, United Kingdom</p>
-                  <p class="card-meta"><span>5 bed · 5 bath</span><span>3,375 sq ft</span><span>£7,350,000</span></p><span class="card-tag">Refurbished</span>
+                  <p class="card-meta"><span>5 bed · 5 bath</span><span>3,375 sq ft</span><span>£6,495,000</span></p><span class="card-tag">Refurbished</span>
                 </div></a></article>
             <article><a href="https://www.apertureglobal.com/47whalley" class="property-card"><figure class="card-figure">
                   <img src="https://k4design.github.io/lofty-sections/img/euproperties/47whalley/fd0f596d5779c92598af1c28296ad6a4.png" srcset="https://k4design.github.io/lofty-sections/img/euproperties/47whalley/fd0f596d5779c92598af1c28296ad6a4.png 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="47 Whalley, Bletchley" width="600" height="450" />
@@ -203,20 +198,6 @@
                   <p class="card-location">Lewisham, London, SE8 4DX, United Kingdom</p>
                   <p class="card-meta"><span>5 bed · 2 bath</span><span>2,275 sq ft</span><span>£1,400,000</span></p><span class="card-tag">End of terrace</span>
                 </div></a></article>
-            <article><a href="https://www.apertureglobal.com/2amidsummermoon" class="property-card"><figure class="card-figure">
-                  <img src="https://k4design.github.io/lofty-sections/img/euproperties/2amidsummermoon/1000046642.jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/2amidsummermoon/1000046642.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="2A Midsummer Moon, Wavendon" width="600" height="450" />
-                </figure><div class="card-body">
-                  <h3>2A Midsummer Moon</h3>
-                  <p class="card-location">Cross End, Milton Keynes MK17 8AQ, United Kingdom</p>
-                  <p class="card-meta"><span>6 bed · 6 bath</span><span>5,327 sq ft · 1 acre</span><span>£1,995,000</span></p><span class="card-tag">Gated</span>
-                </div></a></article>
-            <article><a href="https://www.apertureglobal.com/fernwoodfeocktruro" class="property-card"><figure class="card-figure">
-                  <img src="https://k4design.github.io/lofty-sections/img/euproperties/fernwoodfeocktruro/1.jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/fernwoodfeocktruro/1.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Fernwood, Feock, Truro, Cornwall" width="600" height="450" />
-                </figure><div class="card-body">
-                  <h3>Fernwood</h3>
-                  <p class="card-location">Feock, Truro, Cornwall, United Kingdom</p>
-                  <p class="card-meta"><span>4 bed · 3 bath</span><span>3,249 sq ft</span><span>£1,250,000</span></p><span class="card-tag">Waterside</span>
-                </div></a></article>
             <article><a href="https://www.apertureglobal.com/thepenthouseembassyworks" class="property-card"><figure class="card-figure">
                   <img src="https://k4design.github.io/lofty-sections/img/euproperties/thepenthouseembassyworks/2H9A4518%20(1).jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/thepenthouseembassyworks/2H9A4518%20(1).jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="The Penthouse, Embassy Works, London SW8" width="600" height="450" />
                 </figure><div class="card-body">
@@ -234,26 +215,43 @@
             <article><a href="https://www.apertureglobal.com/bramshawroadlondon" class="property-card"><figure class="card-figure">
                   <img src="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/bramshawroadlondon/Lofts%2044.jpg" srcset="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/bramshawroadlondon/Lofts%2044.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Lofts On The Park, Bramshaw Road, London, E9" width="600" height="450" />
                 </figure><div class="card-body">
-                  <h3>Lofts On The Park</h3>
+                  <h3>Bramshaw Road</h3>
                   <p class="card-location">Bramshaw Road, London, E9, United Kingdom</p>
                   <p class="card-meta"><span>1 bed · 1 bath</span><span>1,256 sq ft</span><span>£750,000</span></p><span class="card-tag">Loft</span>
                 </div></a></article>
+            <article><a href="https://www.apertureglobal.com/residence3004thestage" class="property-card"><figure class="card-figure">
+                  <img src="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/residence3004thestage/1.jpg" srcset="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/residence3004thestage/1.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Residence 3004, The Stage, Shoreditch, London EC2" width="600" height="450" />
+                </figure><div class="card-body">
+                  <h3>Residence 3004, The Stage</h3>
+                  <p class="card-location">Shoreditch, London EC2, United Kingdom</p>
+                  <p class="card-meta"><span>Studio · 1 bath</span><span>Condominium · Leasehold</span><span>£625,000</span></p><span class="card-tag">Strong Rental Asset</span>
+                </div></a></article>
+            <article><a href="https://www.apertureglobal.com/residence1810thestage" class="property-card"><figure class="card-figure">
+                  <img src="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/residence1810thestage/1.jpg" srcset="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/residence1810thestage/1.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Residence 1810, The Stage, Shoreditch, London EC2" width="600" height="450" />
+                </figure><div class="card-body">
+                  <h3>Residence 1810, The Stage</h3>
+                  <p class="card-location">Shoreditch, London EC2, United Kingdom</p>
+                  <p class="card-meta"><span>2 bed · 2 bath</span><span>Condominium · Leasehold</span><span>£1,307,000</span></p><span class="card-tag">High Floor</span>
+                </div></a></article>
+            <article><a href="https://www.apertureglobal.com/chiswickgreenstudios" class="property-card"><figure class="card-figure">
+                  <img src="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/chiswickgreenstudios/1.jpg" srcset="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/chiswickgreenstudios/1.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Chiswick Green Studios, Chiswick, London" width="600" height="450" />
+                </figure><div class="card-body">
+                  <h3>Chiswick Green Studios</h3>
+                  <p class="card-location">Chiswick, London, United Kingdom</p>
+                  <p class="card-meta"><span>2 bed · 2 bath</span><span>1,565 sq ft</span><span>£1,500,000</span></p><span class="card-tag">Warehouse Conversion</span>
+                </div></a></article>
+            <article><a href="https://www.apertureglobal.com/winghambartonmanor" class="property-card"><figure class="card-figure">
+                  <img src="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/winghambartonmanor/1.jpg" srcset="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/winghambartonmanor/1.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Wingham Barton Manor, an historic Kentish manor house in East Kent" width="600" height="450" />
+                </figure><div class="card-body">
+                  <h3>Wingham Barton Manor</h3>
+                  <p class="card-location">Wingham, East Kent, United Kingdom</p>
+                  <p class="card-meta"><span>8 bed · 6 bath</span><span>5,661 sq ft · ~2 acres</span><span>£1,650,000</span></p><span class="card-tag">Historic Manor</span>
+                </div></a></article>
           </div>
         </section>
-        
-        
         <section id="monaco" class="country-section" aria-labelledby="monaco-heading">
           <h2 id="monaco-heading">Monaco</h2>
           <div class="property-grid">
-            <!--
-            <article><a href="https://www.apertureglobal.com/lerocazur" class="property-card"><figure class="card-figure">
-                  <img src="https://k4design.github.io/lofty-sections/img/euproperties/lerocazur/a-1.jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/lerocazur/a-1.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Le Roc Azur, Boulevard d'Italie, Monaco" width="600" height="450" />
-                </figure><div class="card-body">
-                  <h3>Le Roc Azur</h3>
-                  <p class="card-location">Boulevard d'Italie, Monaco</p>
-                  <p class="card-meta"><span>Prime address</span><span>Monaco</span><span>Price upon request</span></p><span class="card-tag">Monaco</span>
-                </div></a></article>
-              -->
             <article><a href="https://www.apertureglobal.com/lerenzomonaco" class="property-card"><figure class="card-figure">
                   <img src="https://k4design.github.io/lofty-sections/img/euproperties/lerenzomonaco/a-23.jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/lerenzomonaco/a-23.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Le Renzo, Mareterra, Monaco" width="600" height="450" />
                 </figure><div class="card-body">
@@ -262,7 +260,6 @@
                   <p class="card-meta"><span>3 bed · 3.5 bath</span><span>422 m² + 151 m² terraces</span><span>€65,000,000</span></p><span class="card-tag">Waterfront</span>
                 </div></a></article>
           </div>
-        
         </section>
         <section id="france" class="country-section" aria-labelledby="france-heading">
           <h2 id="france-heading">France</h2>
@@ -276,16 +273,22 @@
                 </div></a></article>
           </div>
         </section>
-        
         <section id="portugal" class="country-section" aria-labelledby="portugal-heading">
           <h2 id="portugal-heading">Portugal</h2>
           <div class="property-grid">
+            <article><a href="https://www.apertureglobal.com/montedastesasalentejoportugal" class="property-card"><figure class="card-figure">
+                  <img src="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/montedastesasalentejoportugal/1.jpg" srcset="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/montedastesasalentejoportugal/1.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Monte das Tesas, a 17-hectare private estate in Alentejo, Portugal" width="600" height="450" />
+                </figure><div class="card-body">
+                  <h3>Monte das Tesas</h3>
+                  <p class="card-location">Monte das Tesas, Alentejo, Portugal</p>
+                  <p class="card-meta"><span>3 bed · 2 bath</span><span>173 m² · 17 hectares</span><span>€2,187,000</span></p><span class="card-tag">Private Estate</span>
+                </div></a></article>
             <article><a href="https://www.apertureglobal.com/montedacarrasqueira" class="property-card"><figure class="card-figure">
                   <img src="https://k4design.github.io/lofty-sections/img/euproperties/montedacarrasqueira/PHOTO-2026-02-04-13-26-18%20(2).jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/montedacarrasqueira/PHOTO-2026-02-04-13-26-18%20(2).jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Monte da Carrasqueira, Alentejo" width="600" height="450" />
                 </figure><div class="card-body">
                   <h3>Monte da Carrasqueira</h3>
                   <p class="card-location">Bric nº 2, Foros da Casa Nova, 7540-400 São Domingos e Vale de Água, Portugal</p>
-                  <p class="card-meta"><span>2 bed · 1 bath</span><span>102 m² · 0.813 acres</span><span>€850,000</span></p><span class="card-tag">Restored Quinta</span>
+                  <p class="card-meta"><span>2 bed · 1 bath</span><span>102 m² · 0.813 acres</span><span>€799,000</span></p><span class="card-tag">Restored Quinta</span>
                 </div></a></article>
             <article><a href="https://www.apertureglobal.com/spatiacomportavilla" class="property-card"><figure class="card-figure">
                   <img src="https://k4design.github.io/lofty-sections/img/euproperties/spatiacomportavilla/Spatia_Comporta_207-51.jpg" srcset="https://k4design.github.io/lofty-sections/img/euproperties/spatiacomportavilla/Spatia_Comporta_207-51.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="Spatia Comporta Villa, Grândola, Portugal" width="600" height="450" />
@@ -294,6 +297,13 @@
                   <p class="card-location">N261-1 Estrada das Bicas, Grândola, 7570-337, Portugal</p>
                   <p class="card-meta"><span>3 bed · 2 bath</span><span>494 m² · 23,077 m² land</span><span>€2,450,000</span></p><span class="card-tag">Comporta</span>
                 </div></a></article>
+            <!-- <article><a href="parquedasnacoes.html" class="property-card"><figure class="card-figure">
+                  <img src="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/parquedasnacoes/2.jpg" srcset="https://raw.githubusercontent.com/k4design/aperture/refs/heads/main/parquedasnacoes/2.jpg 1x" sizes="(min-width: 64rem) 33vw, (min-width: 48rem) 50vw, 100vw" alt="4-Bedroom Luxury Penthouse, Parque das Nações, Lisbon" width="600" height="450" />
+                </figure><div class="card-body">
+                  <h3>Parque das Nações</h3>
+                  <p class="card-location">Parque das Nações, Lisbon, Portugal</p>
+                  <p class="card-meta"><span>4 bed · 5 bath</span><span>416 m² + 346 m² dependent</span><span>€4,500,000</span></p><span class="card-tag">Penthouse</span>
+                </div></a></article> -->
           </div>
         </section>
       </div>
@@ -333,5 +343,79 @@
         }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
         sections.forEach(function (el) { observer.observe(el); });
       }
+    })();
+  </script>
+<script>
+    (function () {
+      function parsePrice(article) {
+        var spans = article.querySelectorAll('.card-meta span');
+        if (!spans.length) return 0;
+        var text = spans[spans.length - 1].textContent.replace(/[^0-9]/g, '');
+        return parseInt(text, 10) || 0;
+      }
+      function parseBeds(article) {
+        var span = article.querySelector('.card-meta span');
+        if (!span) return 0;
+        var m = span.textContent.match(/(\d+)\s*bed/i);
+        return m ? parseInt(m[1], 10) : 0;
+      }
+      function parseName(article) {
+        var h3 = article.querySelector('h3');
+        return h3 ? h3.textContent.trim() : '';
+      }
+
+      document.querySelectorAll('.country-section').forEach(function (section) {
+        var grid = section.querySelector('.property-grid');
+        if (!grid) return;
+        var articles = Array.from(grid.querySelectorAll(':scope > article'));
+        if (articles.length < 2) return; // no point sorting a single card
+
+        var origOrder = articles.slice();
+        var sectionId = section.id || ('s' + Math.random().toString(36).slice(2));
+        var selectId = 'sort-' + sectionId;
+
+        var bar = document.createElement('div');
+        bar.className = 'sort-bar';
+        bar.innerHTML =
+          '<label for="' + selectId + '">Sort by</label>' +
+          '<select id="' + selectId + '" class="sort-select">' +
+          '<option value="default">Featured</option>' +
+          '<option value="price-asc">Price: Low to High</option>' +
+          '<option value="price-desc" selected>Price: High to Low</option>' +
+          '<option value="name-asc">Name: A–Z</option>' +
+          '<option value="beds-desc">Most bedrooms</option>' +
+          '</select>';
+
+        var heading = section.querySelector('h2');
+        if (heading && heading.nextSibling) {
+          section.insertBefore(bar, heading.nextSibling);
+        } else if (heading) {
+          heading.parentNode.appendChild(bar);
+        } else {
+          section.insertBefore(bar, grid);
+        }
+
+        var select = bar.querySelector('.sort-select');
+
+        function applySort(val) {
+          var sorted = Array.from(grid.querySelectorAll(':scope > article'));
+          if (val === 'default') {
+            origOrder.forEach(function (a) { grid.appendChild(a); });
+            return;
+          }
+          sorted.sort(function (a, b) {
+            if (val === 'price-asc')  return parsePrice(a) - parsePrice(b);
+            if (val === 'price-desc') return parsePrice(b) - parsePrice(a);
+            if (val === 'name-asc')   return parseName(a).localeCompare(parseName(b));
+            if (val === 'beds-desc')  return parseBeds(b) - parseBeds(a);
+            return 0;
+          });
+          sorted.forEach(function (a) { grid.appendChild(a); });
+        }
+
+        applySort('price-desc');
+
+        select.addEventListener('change', function () { applySort(this.value); });
+      });
     })();
   </script>
